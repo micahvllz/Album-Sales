@@ -22,7 +22,7 @@ class Album extends Model
      *
      * @var array
      */
-    protected $fillable = ['year', 'name', 'sales'];
+    protected $fillable = ['year', 'name', 'sales', 'artist_id', 'cover_image'];
 
     /**
      * Get the artist that owns the album.
