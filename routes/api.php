@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(ArtistController::class)->group(function () {
-    Route::get('/artists', 'index');
-    Route::get('/artists/{id}', 'show');
-    Route::post('/artists', 'store');
-    Route::put('/artists/{id}', 'update');
-    Route::delete('/artists/{id}', 'destroy');
-});
+Route::apiResource('/artists', ArtistController::class);
+Route::apiResource('/albums', AlbumController::class);
 
-Route::controller(AlbumController::class)->group(function () {
-    Route::get('/albums', 'index');
-    Route::get('/albums/{id}', 'show');
-    Route::post('/albums', 'store');
-    Route::put('/albums/{id}', 'update');
-    Route::delete('/albums/{id}', 'destroy');
+Route::controller(DashboardController::class)->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('total-sales', 'totalAlbumsSoldPerArtist');
+        Route::get('sales-per-artist', 'combinedAlbumSalesPerArtist');
+        Route::get('top-artist', 'topSellingArtist');
+        Route::get('albums', 'albumsByArtist');
+    });
 });
