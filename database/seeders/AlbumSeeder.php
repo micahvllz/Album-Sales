@@ -26,7 +26,7 @@ class AlbumSeeder extends Seeder
                     'artist_id' => $artist->id,
                     'name' => $record['Album'],
                 ], [
-                    'year' => substr($record['Date Released'], 0, 4),
+                    'year' => '20' . substr($record['Date Released'], 0, 2),
                     'sales' => $record['2022 Sales'],
                     'cover_image' => Album::factory()->make()->cover_image,
                 ]);

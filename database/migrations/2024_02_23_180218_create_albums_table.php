@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->year('year');
             $table->string('name', 255);
-            $table->decimal('sales', 8, 2);
+            $table->decimal('sales', 12, 2);
             $table->foreignId('artist_id')->constrained()->onDelete('cascade');
             $table->string('cover_image')->nullable();
             $table->timestamps();
