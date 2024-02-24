@@ -90,7 +90,7 @@ class AlbumController extends Controller
         if ($request->hasFile('cover_image')) {
             // Delete old image if exists
             if ($album->cover_image) {
-                Storage::delete($album->cover_image);
+                Storage::disk('public')->delete($album->cover_image);
             }
 
             // Store new image
@@ -115,7 +115,7 @@ class AlbumController extends Controller
         }
 
         if ($album->cover_image) {
-            Storage::delete($album->cover_image);
+            Storage::disk('public')->delete($album->cover_image);
         }
 
         $album->delete();
