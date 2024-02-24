@@ -30,9 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/albums', AlbumController::class);
 
     Route::controller(DashboardController::class)->prefix('dashboard')->group(function () {
-        Route::get('total-sales', 'totalAlbumsSoldPerArtist');
-        Route::get('sales-per-artist', 'combinedAlbumSalesPerArtist');
+        Route::get('total-albums', 'totalAlbumsSoldPerArtist');
+        Route::get('album-sales', 'combinedAlbumSalesPerArtist');
         Route::get('top-artist', 'topSellingArtist');
-        Route::get('albums', 'albumsByArtist');
+        Route::get('albums-list', 'albumsByArtist');
     });
 });
